@@ -18,6 +18,11 @@ def start(message):
     markup.row(btn4)
     bot.send_message(message.chat.id, f'Hi there, {message.from_user.first_name}! Choose the option:', reply_markup=markup)
 
+@bot.callback_query_handler(func=lambda callback: True)
+def callback_mess(callback):
+    if callback.data=='delete':
+        bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
 @bot.message_handler(commands=['author'])
 def donation(message):
     bot.send_message(message.chat.id, 'Welcome to my website!', parse_mode='html')
