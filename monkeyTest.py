@@ -3,25 +3,35 @@ from telebot import types
 import webbrowser
 import time
 
-bot = telebot.TeleBot('TOKEN')
+bot = telebot.TeleBot('7106621173:AAE7kIT1AQcDgRIHD94DyuKnPyYrQMCfznM')
 
 @bot.message_handler(commands=['start'])
 def start(message):
     time.sleep(0.5)
-    markup = types.InlineKeyboardMarkup()
-    btn1 = types.InlineKeyboardButton('Start the test', callback_data='delete')
+    markup = types.ReplyKeyboardMarkup()
+    btn1 = types.KeyboardButton('Start the test')
     markup.row(btn1)
-    btn2 = types.InlineKeyboardButton('Author', url='https://google.com')
-    btn3 = types.InlineKeyboardButton('Donation', url='https://savelife.in.ua/')
+    btn2 = types.KeyboardButton('Author')
+    btn3 = types.KeyboardButton('Donation')
     markup.row(btn2, btn3)
-    btn4 = types.InlineKeyboardButton('Leave review', url='https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+    btn4 = types.KeyboardButton('Leave review')
     markup.row(btn4)
     bot.send_message(message.chat.id, f'Hi there, {message.from_user.first_name}! Choose the option:', reply_markup=markup)
+    bot.register_next_step_handler(message, on_click)
 
-@bot.callback_query_handler(func=lambda callback: True)
-def callback_mess(callback):
-    if callback.data=='delete':
-        bot.delete_message(callback.message.chat.id, callback.message.message_id)
+def on_click(message):
+    if message.text == 'Start the test':
+        pass
+        bot.register_next_step_handler(message, on_click)
+    elif message.text == 'Author':
+        webbrowser.open('https://google.com')
+        bot.register_next_step_handler(message, on_click)
+    elif message.text == 'Donation':
+        webbrowser.open('https://savelife.in.ua/')
+        bot.register_next_step_handler(message, on_click)
+    elif message.text == 'Donation':
+        webbrowser.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+        bot.register_next_step_handler(message, on_click)
 
 @bot.message_handler(commands=['author'])
 def donation(message):
