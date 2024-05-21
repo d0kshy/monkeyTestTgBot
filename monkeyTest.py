@@ -47,14 +47,6 @@ def on_click(message):
         webbrowser.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
         bot.register_next_step_handler(message, on_click)
 
-def que1(message):
-    markup = types.InlineKeyboardMarkup()
-    btn2 = types.InlineKeyboardButton('Pink', callback_data='color_pink')
-    btn3 = types.InlineKeyboardButton('Yellow', callback_data='color_yellow')
-    markup.row(btn2, btn3)
-    bot.send_message(message.chat.id, f'What color would you prefer?', reply_markup=markup)
-
-
 @bot.message_handler(commands=['author'])
 def donation(message):
     bot.send_message(message.chat.id, 'Welcome to my website!', parse_mode='html')
