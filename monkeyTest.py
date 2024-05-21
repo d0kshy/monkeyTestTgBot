@@ -3,7 +3,21 @@ from telebot import types
 import webbrowser
 import time
 
-bot = telebot.TeleBot('7106621173:AAE7kIT1AQcDgRIHD94DyuKnPyYrQMCfznM')
+bot = telebot.TeleBot('TOKEN')
+
+user_data = {}
+
+questions = [
+    "What color do you prefer?",
+    "Are you introvert or extrovert?"
+]
+
+monkeyType = [
+    {"name": "YellowParty", "color": "Yellow", "psychtype": "Extravert"},
+    {"name": "YellowSleep", "color": "Yellow", "psychtype": "Introvert"},
+    {"name": "PinkParty", "color": "Pink", "psychtype": "Extravert"},
+    {"name": "PinkParty", "color": "Pink", "psychtype": "Introvert"}
+]
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -21,15 +35,17 @@ def start(message):
 
 def on_click(message):
     if message.text == 'Start the test':
-        pass
+        bot.send_message(message.chat.id, 'Let\'s start the test', parse_mode='html')
         bot.register_next_step_handler(message, on_click)
     elif message.text == 'Author':
+        bot.send_message(message.chat.id, 'Welcome to my website!', parse_mode='html')
+        time.sleep(1.0)
         webbrowser.open('https://google.com')
         bot.register_next_step_handler(message, on_click)
     elif message.text == 'Donation':
-        webbrowser.open('https://savelife.in.ua/')
+        webbrowser.open('https://savelife.in.ua/en')
         bot.register_next_step_handler(message, on_click)
-    elif message.text == 'Donation':
+    elif message.text == 'Leave review':
         webbrowser.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
         bot.register_next_step_handler(message, on_click)
 
@@ -43,11 +59,11 @@ def donation(message):
 def donation(message):
     bot.send_message(message.chat.id, 'Thank you for supporting Ukraine! 🇺🇦', parse_mode='html')
     time.sleep(1.0)
-    webbrowser.open(url='https://savelife.in.ua/')
+    webbrowser.open(url='https://savelife.in.ua/en/')
 
 @bot.message_handler(commands=['review'])
 def donation(message):
-    bot.send_message(message.chat.id, 'Please leave feedback 💭\nYour thoughts means a lot to me!', parse_mode='html')
+    bot.send_message(message.chat.id, 'Please leave feedback 💭\nYour thoughts mean a lot to me!', parse_mode='html')
     time.sleep(3.0)
     webbrowser.open(url='https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
