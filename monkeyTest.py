@@ -34,7 +34,7 @@ def start(message):
 
 def on_click(message):
     if message.text == 'Start the test':
-        que1(message)
+        bot.send_message(message.chat.id, 'Let\'s start the test', parse_mode='html')
     elif message.text == 'Author':
         bot.send_message(message.chat.id, 'Welcome to my website!', parse_mode='html')
         time.sleep(1.0)
