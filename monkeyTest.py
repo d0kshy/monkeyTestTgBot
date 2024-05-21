@@ -9,7 +9,7 @@ user_data = {}
 
 questions = [
     "What color do you prefer?",
-    "Are you introvert or exravert?"
+    "Are you introvert or extrovert?"
 ]
 
 monkeyType = [
@@ -21,6 +21,7 @@ monkeyType = [
 
 @bot.message_handler(commands=['start'])
 def start(message):
+    time.sleep(0.5)
     markup = types.ReplyKeyboardMarkup()
     btn1 = types.KeyboardButton('Start the test')
     markup.row(btn1)
@@ -35,6 +36,7 @@ def start(message):
 def on_click(message):
     if message.text == 'Start the test':
         bot.send_message(message.chat.id, 'Let\'s start the test', parse_mode='html')
+        bot.register_next_step_handler(message, on_click)
     elif message.text == 'Author':
         bot.send_message(message.chat.id, 'Welcome to my website!', parse_mode='html')
         time.sleep(1.0)
@@ -61,7 +63,7 @@ def donation(message):
 
 @bot.message_handler(commands=['review'])
 def donation(message):
-    bot.send_message(message.chat.id, 'Please leave feedback 💭\nYour thoughts means a lot to me!', parse_mode='html')
+    bot.send_message(message.chat.id, 'Please leave feedback 💭\nYour thoughts mean a lot to me!', parse_mode='html')
     time.sleep(3.0)
     webbrowser.open(url='https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
