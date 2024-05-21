@@ -3,7 +3,21 @@ from telebot import types
 import webbrowser
 import time
 
-bot = telebot.TeleBot('7106621173:AAE7kIT1AQcDgRIHD94DyuKnPyYrQMCfznM')
+bot = telebot.TeleBot('TOKEN')
+
+user_data = {}
+
+questions = [
+    "What color do you prefer?",
+    "Are you introvert or exravert?"
+]
+
+monkeyType = [
+    {"name": "YellowParty", "color": "Yellow", "psychtype": "Extravert"},
+    {"name": "YellowSleep", "color": "Yellow", "psychtype": "Introvert"},
+    {"name": "PinkParty", "color": "Pink", "psychtype": "Extravert"},
+    {"name": "PinkParty", "color": "Pink", "psychtype": "Introvert"}
+]
 
 @bot.message_handler(commands=['start'])
 def start(message):
