@@ -50,7 +50,7 @@ def on_click(message):
         bot.register_next_step_handler(message, on_click)
 
 @bot.message_handler(commands=['author'])
-def donation(message):
+def author(message):
     bot.send_message(message.chat.id, 'Welcome to my website!', parse_mode='html')
     time.sleep(1.0)
     webbrowser.open(url='https://google.com')
@@ -62,9 +62,10 @@ def donation(message):
     webbrowser.open(url='https://savelife.in.ua/en/')
 
 @bot.message_handler(commands=['review'])
-def donation(message):
+def review(message):
     bot.send_message(message.chat.id, 'Please leave feedback 💭\nYour thoughts mean a lot to me!', parse_mode='html')
     time.sleep(3.0)
     webbrowser.open(url='https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
 bot.polling(none_stop=True)
+
