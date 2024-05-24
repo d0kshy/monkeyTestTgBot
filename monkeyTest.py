@@ -3,7 +3,7 @@ from telebot import types
 import webbrowser
 import time
 
-bot = telebot.TeleBot('7106621173:AAE7kIT1AQcDgRIHD94DyuKnPyYrQMCfznM')
+bot = telebot.TeleBot('TOKEN')
 
 user_data = {}
 
